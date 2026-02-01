@@ -1,9 +1,9 @@
 "use client";
-import { motion, useTransform, useScroll } from "framer-motion";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from "next/image";
+import { motion, useTransform, useScroll } from "framer-motion";
 
-// icons and ui components ---
+// --- Icons & UI Components ---
 
 const FlowerIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -27,19 +27,13 @@ const HangingLampSwitch = () => {
   const [isPulling, setIsPulling] = useState(false);
 
   useEffect(() => {
-    // 1. Check if the user has a manually saved preference from a previous visit
     const savedTheme = localStorage.getItem("theme");
-    
-    // 2. If there is NO saved theme, we force 'light' (default)
-    // 3. If there IS a saved theme, we respect the user's previous choice
     if (savedTheme === "dark") {
       setIsDark(true);
       document.documentElement.classList.add("dark");
     } else {
-      // Default to light mode
       setIsDark(false);
       document.documentElement.classList.remove("dark");
-      // Optional: Save this as the initial state
       if (!savedTheme) localStorage.setItem("theme", "light");
     }
   }, []);
@@ -76,9 +70,9 @@ const HangingLampSwitch = () => {
           bg-rose-quartz group-hover:scale-110 transition-transform duration-200
         `}>
            {isDark ? (
-             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white transition-opacity"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
            ) : (
-             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white transition-opacity"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
            )}
         </div>
       </div>
@@ -86,10 +80,17 @@ const HangingLampSwitch = () => {
   );
 };
 
-// components for main page
+// --- Main Portfolio Component ---
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
+  const targetRef = useRef<HTMLDivElement | null>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-85%"]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -101,89 +102,70 @@ export default function Portfolio() {
     { 
       title: "Product Intern", 
       company: "Aventis Technology",
-      date: "Sept 2025 – Jan 2026", 
-      desc: "Optimized Zoho Desk workflows for Customer Support and conducted UAT on 5+ features.", //
+      date: "Sept 2025 – Jan 2026",
+      desc: "Optimized Zoho Desk workflows for Customer Support and conducted UAT on 5+ features.",
       tags: ["Zoho Desk", "Agile", "UAT"] 
     },
     { 
       title: "Content Writer", 
       company: "GDG on Campus - DLSU",
       date: "Sept 2024 – Sept 2025",
-      desc: "Created publicity materials’ captions and Facebook reels to enhance presence in the tech community.", 
+      desc: "Created publicity materials’ captions and Facebook reels to enhance presence in the tech community.",
       tags: ["Content", "Social Media"] 
     },
     { 
       title: "IMC - Publicity", 
       company: "CCS Week",
       date: "Jun 2024 – Nov 2024",
-      desc: "Expanded student engagement by making captions and Facebook reels on numerous projects.", 
+      desc: "Expanded student engagement by making captions and Facebook reels on numerous projects.",
       tags: ["Publicity", "Engagement"] 
     },
     { 
       title: "Engagement Planner", 
       company: "GDG on Campus - DLSU",
       date: "Oct 2023 – Oct 2024",
-      desc: "Facilitated officer general assembly to connect and gather tech-related insights.", 
+      desc: "Facilitated officer general assembly to connect and gather tech-related insights.",
       tags: ["Events", "Strategy"] 
     },
     { 
       title: "Product Owner", 
       company: "Salud Panciteria",
-      date: "Oct 2024 – Jan 2025", 
-      desc: "Managed business needs alignment and handled manual testing to ensure quality standards.", //
+      date: "Oct 2024 – Jan 2025",
+      desc: "Managed business needs alignment and handled manual testing to ensure quality standards.",
       tags: ["DevOps", "Product"] 
     },
     { 
       title: "Junior Officer", 
       company: "LSCS",
       date: "Nov 2022 – Aug 2023",
-      desc: "Worked with committees in implementing initiatives that provided valuable organizational skills.", 
+      desc: "Worked with committees in implementing initiatives that provided valuable organizational skills.",
       tags: ["Teamwork", "Growth"] 
     },
   ];
 
   const projects = [
-    {
-      title: "CrowdCast", 
-      desc: "An application for visualizing crowding uncertainties for MRT/LRT commuters in Metro Manila.", //
-      tags: ["Data Viz", "Next.js", "Research"],
-      color: "bg-rose-quartz"
-    },
-    {
-      title: "OCR Pipeline", 
-      desc: "A computer vision system utilizing OpenCV, Tesseract, and Leptonica for text extraction.", //
-      tags: ["C++", "OpenCV", "Vision"],
-      color: "bg-serenity"
-    },
-    {
-      title: "CropSagip", 
-      desc: "A study on consumer perceptions of food waste and willingness to buy 'imperfect' produce.", //
-      tags: ["Sustainability", "Research", "UI/UX"],
-      color: "bg-rose-quartz"
-    }
+    { title: "CrowdCast", desc: "An application for visualizing crowding uncertainties for commuters in Metro Manila.", tags: ["Data Viz", "Next.js"], color: "bg-rose-quartz" },
+    { title: "OCR Pipeline", desc: "A computer vision system utilizing OpenCV and Tesseract for text extraction.", tags: ["C++", "OpenCV"], color: "bg-serenity" },
+    { title: "CropSagip", desc: "A study on consumer perceptions of food waste and 'imperfect' produce.", tags: ["Sustainability", "UI/UX"], color: "bg-rose-quartz" }
   ];
 
   return (
-    <div className="min-h-screen font-sans selection:bg-serenity selection:text-white dark:bg-slate-900 overflow-x-hidden">
+    <div className="min-h-screen font-sans selection:bg-serenity selection:text-white dark:bg-slate-900 transition-colors duration-500 overflow-x-hidden">
       
+      {/* --- SHARED GRID OVERLAY --- */}
+      {/* This grid persists behind both modes */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.05] dark:opacity-[0.1] bg-[grid] dark:bg-[grid-dark]" 
+           style={{ backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`, backgroundSize: '30px 30px' }} 
+      />
+
       {/* --- STICKY NAVIGATION BAR --- */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-20 py-6 ${
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-6 ${
         scrolled ? "bg-serenity/90 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}>
         <div className="max-w-full flex justify-between items-center mx-auto">
-          
-          {/* LEFT SIDE: LOGO */}
           <div className="relative w-16 h-10 hover:scale-105 transition-transform cursor-pointer">
-            <Image 
-              src="/logo.svg" 
-              alt="Logo" 
-              fill
-              className="object-contain drop-shadow-sm"
-              priority
-            />
+            <Image src="/logo.svg" alt="Logo" fill className="object-contain drop-shadow-sm" priority />
           </div>
-          
-          {/* RIGHT SIDE: NAVBAR & SWITCH */}
           <div className="flex items-center gap-6">
             <div className={`hidden md:flex space-x-8 text-sm font-bold px-8 py-4 rounded-full transition-all duration-500 text-off-white ${
               scrolled 
@@ -199,115 +181,68 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* --- SERENITY CONTAINER --- */}
+      {/* --- HERO / SERENITY CONTAINER --- */}
       <div className="mx-4 md:mx-8 bg-serenity rounded-b-[60px] relative z-10 shadow-xl pt-48 pb-32">
-        <div className="text-off-white px-6">
+        <div className="text-off-white px-6 text-center">
           <FlowerIcon className="absolute top-20 left-[10%] w-12 h-12 text-off-white/40 animate-spin-slow" />
           <FlowerIcon className="absolute bottom-10 right-[15%] w-16 h-16 text-off-white/30 rotate-12" />
-
-          <header className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="inline-block bg-white text-deep-slate px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest mb-6 shadow-sm transform -rotate-2 border border-deep-slate/10">
-              Hello!
-            </span>
-            
-            <h1 className="font-serif text-6xl md:text-8xl font-black mb-6 text-off-white text-shadow-retro leading-tight">
-              I'm{' '}
-              <span className="relative inline-block">
-                  Alexis
-                <svg className="absolute -bottom-2 left-0 w-full h-4 text-rose-quartz" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
-                </svg>
-              </span>.
-            </h1>
-            
+          <header className="max-w-4xl mx-auto relative z-10">
+            <span className="inline-block bg-white text-deep-slate px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest mb-6 shadow-sm transform -rotate-2 border border-deep-slate/10">Hello!</span>
+            <h1 className="font-serif text-6xl md:text-8xl font-black mb-6 leading-tight">I'm Alexis.</h1>
             <p className="text-lg md:text-xl font-medium text-off-white/90 max-w-2xl mx-auto leading-relaxed">
               I am a <strong className="text-off-white font-black">Computer Science senior</strong> at DLSU and an aspiring Product Manager/UI/UX Designer.
-              I combine technical strategy with user-centered design to lead collaborative teams in building high-impact, functional solutions.
+              I blend technical strategy with user-centered design to build functional solutions.
             </p>
           </header>
         </div>
       </div>
 
-      {/* --- EXPERIENCE SECTION --- */}
-      <section id="experience" className="max-w-7xl mx-auto px-6 py-20 pt-32 relative">
-        <div className="flex items-center gap-4 mb-16 justify-center">
-          <FlowerIcon className="w-8 h-8 text-serenity dark:text-off-white" />
-          <h2 className="font-serif text-4xl font-bold text-deep-slate dark:text-off-white">Experience</h2>
-          <FlowerIcon className="w-8 h-8 text-serenity dark:text-off-white" />
-        </div>
-
-        <div className="flex overflow-x-auto pb-8 gap-8 no-scrollbar md:grid md:grid-cols-3 md:overflow-visible">
-          {experiences.map((exp, i) => (
-            <div key={i} className="group relative min-w-[320px] md:min-w-0">
-              <div className={`
-                absolute inset-0 rounded-[40px] transform rotate-1 transition-transform group-hover:rotate-3 group-hover:scale-105
-                ${i % 2 === 0 ? 'bg-serenity/30' : 'bg-rose-quartz/20'}
-              `} />
-              
-              <div className="relative bg-white dark:bg-slate-800 border-2 border-deep-slate/10 dark:border-white/10 rounded-[40px] p-8 h-full flex flex-col items-center text-center transition-transform hover:-translate-y-2 shadow-lg hover:shadow-xl">
-                <div className={`
-                  mb-2 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border
-                  ${i % 2 === 0 ? 'bg-serenity text-white border-serenity' : 'bg-rose-quartz text-white border-rose-quartz'}
-                `}>
-                  {exp.company}
-                </div>
-                
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
-                  {exp.date}
-                </span>
-
-                <h3 className="font-serif text-2xl font-bold mb-4 text-deep-slate dark:text-off-white leading-tight">
-                  {exp.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-off-white/70 mb-8 leading-relaxed">
-                  {exp.desc}
-                </p>
-                <div className="mt-auto flex flex-wrap gap-2 justify-center">
-                  {exp.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-off-white/60">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+      {/* --- HORIZONTAL SCROLL EXPERIENCE --- */}
+      {/* Grid is visible here as well due to the dark:bg-slate-900 container */}
+      <section ref={targetRef} className="relative h-[450vh] bg-transparent">
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+          <div className="flex flex-col w-full">
+            <div className="flex items-center gap-4 mb-16 justify-center">
+              <FlowerIcon className="w-8 h-8 text-serenity dark:text-rose-quartz" />
+              <h2 className="font-serif text-5xl font-bold text-deep-slate dark:text-off-white transition-colors">Experience</h2>
+              <FlowerIcon className="w-8 h-8 text-serenity dark:text-rose-quartz" />
             </div>
-          ))}
+            <motion.div style={{ x }} className="flex gap-12 pl-[10%] pr-[10%]">
+              {experiences.map((exp, i) => (
+                <div key={i} className="group relative min-w-[450px] md:min-w-[550px] flex">
+                  <div className={`absolute inset-0 rounded-[60px] transform rotate-1 transition-transform group-hover:rotate-2 ${i % 2 === 0 ? 'bg-serenity/40' : 'bg-rose-quartz/30'}`} />
+                  <div className="relative bg-white dark:bg-slate-800 border-2 border-deep-slate/10 dark:border-white/10 rounded-[60px] p-12 w-full flex flex-col items-center text-center shadow-2xl transition-colors">
+                    <div className={`mb-4 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest border ${i % 2 === 0 ? 'bg-serenity text-white' : 'bg-rose-quartz text-white'}`}>
+                      {exp.company}
+                    </div>
+                    <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase mb-6">{exp.date}</span>
+                    <h3 className="font-serif text-3xl font-bold mb-6 text-deep-slate dark:text-white leading-tight">{exp.title}</h3>
+                    <p className="text-lg text-slate-600 dark:text-off-white/70 mb-10 leading-relaxed">{exp.desc}</p>
+                    <div className="mt-auto flex flex-wrap gap-3 justify-center">
+                      {exp.tags.map(tag => (
+                        <span key={tag} className="px-4 py-2 bg-slate-100 dark:bg-slate-700 rounded-xl text-xs font-bold text-slate-600 dark:text-white">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* --- PROJECTS SECTION --- */}
-      <section id="projects" className="py-20 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col items-center mb-16">
-             <h2 className="font-serif text-5xl md:text-6xl font-black text-deep-slate dark:text-off-white text-center">
-               Featured <span className="relative inline-block text-serenity">
-                 Projects
-                 <StarIcon className="absolute -top-6 -right-8 w-8 h-8 text-rose-quartz animate-pulse" />
-               </span>
-             </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section id="projects" className="relative z-20 bg-white dark:bg-slate-900 py-20 px-6 transition-colors duration-500">
+        <div className="max-w-6xl mx-auto relative">
+          <h2 className="font-serif text-5xl font-black text-center mb-16 text-deep-slate dark:text-white">Featured Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {projects.map((proj, i) => (
-              <div key={i} className="group bg-white dark:bg-slate-800 rounded-t-[100px] rounded-b-[20px] p-6 pb-8 border-4 border-white dark:border-slate-700 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl overflow-hidden">
-                <div className={`h-32 w-full ${proj.color} rounded-t-[80px] rounded-b-[20px] mb-6 flex items-center justify-center relative overflow-hidden`}>
-                   <div className="absolute inset-0 bg-white/20" />
-                   <FlowerIcon className="text-white/40 w-16 h-16" />
+              <div key={i} className="group bg-slate-50 dark:bg-slate-800 rounded-[40px] p-8 shadow-xl transition-all hover:-translate-y-2">
+                <div className={`h-40 w-full ${proj.color} rounded-[30px] mb-8 relative overflow-hidden flex items-center justify-center`}>
+                   <FlowerIcon className="w-16 h-16 text-white/30" />
                 </div>
-                
-                <div className="text-center px-4">
-                  <h3 className="font-serif text-2xl font-bold mb-3 text-deep-slate dark:text-off-white">{proj.title}</h3>
-                  <p className="text-sm text-slate-600 dark:text-off-white/70 mb-6 leading-relaxed">
-                    {proj.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {proj.tags.map(tag => (
-                      <span key={tag} className="px-2 py-1 border border-deep-slate/20 rounded-md text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-off-white/50 group-hover:bg-rose-quartz group-hover:text-white group-hover:border-transparent transition-colors">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <h3 className="font-serif text-2xl font-bold mb-4 text-deep-slate dark:text-white">{proj.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{proj.desc}</p>
               </div>
             ))}
           </div>
@@ -315,24 +250,18 @@ export default function Portfolio() {
       </section>
 
       {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="relative py-32 px-6">
-        <div className="max-w-4xl mx-auto bg-serenity rounded-[60px] p-12 md:p-20 text-center relative overflow-hidden shadow-lg border-4 border-white">
-          <FlowerIcon className="absolute top-[-20px] left-[-20px] w-32 h-32 text-white/20 animate-pulse" />
-          <h2 className="font-serif text-3xl md:text-6xl font-black mb-8 text-off-white">
-            Let's connect !<br/> 
-          </h2>
+      <section id="contact" className="relative py-32 px-6 bg-white dark:bg-slate-900 z-20 transition-colors">
+        <div className="max-w-4xl mx-auto bg-serenity rounded-[60px] p-12 text-center shadow-lg relative overflow-hidden">
+          <FlowerIcon className="absolute -top-10 -left-10 w-48 h-48 text-white/10" />
+          <h2 className="font-serif text-3xl md:text-6xl font-black mb-8 text-off-white">Let's connect!</h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <a href="mailto:beaarcega28@gmail.com" className="inline-block bg-white text-serenity px-10 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
-               Email Me
-             </a>
-             <a href="https://linkedin.com/in/alexisarcega" target="_blank" rel="noopener noreferrer" className="inline-block bg-transparent text-white border-2 border-white/50 px-10 py-4 rounded-full font-bold hover:bg-white/10 hover:scale-105 transition-all">
-               LinkedIn
-             </a>
+             <a href="mailto:beaarcega28@gmail.com" className="bg-white text-serenity px-10 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">Email Me</a>
+             <a href="https://linkedin.com/in/alexisarcega" target="_blank" className="bg-transparent text-white border-2 border-white/50 px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-all">LinkedIn</a>
           </div>
         </div>
       </section>
 
-      <footer className="text-right pr-10 pb-10 pt-10 text-xs font-bold uppercase tracking-widest text-slate-500">
+      <footer className="text-right pr-10 pb-10 pt-10 text-xs font-bold uppercase text-slate-500 bg-white dark:bg-slate-900 z-20 transition-colors">
         © {new Date().getFullYear()} Bea Alexis Arcega
       </footer>
     </div>
