@@ -102,9 +102,9 @@ export default function Portfolio() {
 
       <header className="max-w-5xl mx-auto px-6 py-32 md:py-48 text-center md:text-left">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 leading-[0.85] uppercase">
-          Hi! I'm 
-          <span className="text-serenity"> Alexis</span>
-        </h1> 
+          Bea Alexis <br />
+          <span className="text-serenity">Arcega</span>[cite: 1].
+        </h1>
         <p className="text-xl md:text-2xl opacity-70 max-w-3xl leading-relaxed font-medium mx-auto md:mx-0">
           BS Computer Science student at De La Salle University-Manila[cite: 4, 5]. Product Intern specializing in UI/UX, Software Technology, and Agile development. [cite: 11, 36]
         </p>

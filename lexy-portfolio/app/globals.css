@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --color-rose-quartz: #F7CAC9;
+  --color-serenity: #92A8D1;
+  --bg-gradient-light: linear-gradient(135deg, #F7CAC9 0%, #ffffff 40%, #ffffff 60%, #92A8D1 100%);
+  --bg-gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+@layer base {
+  body {
+    background: var(--bg-gradient-light);
+    background-attachment: fixed;
+    min-height: 100vh;
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  .dark body {
+    background: var(--bg-gradient-dark);
+  }
+}
