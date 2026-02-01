@@ -27,10 +27,20 @@ const HangingLampSwitch = () => {
   const [isPulling, setIsPulling] = useState(false);
 
   useEffect(() => {
+    // 1. Check if the user has a manually saved preference from a previous visit
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    
+    // 2. If there is NO saved theme, we force 'light' (default)
+    // 3. If there IS a saved theme, we respect the user's previous choice
+    if (savedTheme === "dark") {
       setIsDark(true);
       document.documentElement.classList.add("dark");
+    } else {
+      // Default to light mode
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
+      // Optional: Save this as the initial state
+      if (!savedTheme) localStorage.setItem("theme", "light");
     }
   }, []);
 
@@ -226,7 +236,6 @@ export default function Portfolio() {
           <FlowerIcon className="w-8 h-8 text-serenity dark:text-off-white" />
         </div>
 
-        {/* Scrollable Container for Experience */}
         <div className="flex overflow-x-auto pb-8 gap-8 no-scrollbar md:grid md:grid-cols-3 md:overflow-visible">
           {experiences.map((exp, i) => (
             <div key={i} className="group relative min-w-[320px] md:min-w-0">
