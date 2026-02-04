@@ -3,23 +3,78 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-serif: var(--font-fraunces), serif;
+  --font-sans: var(--font-quicksand), sans-serif;
   --color-rose-quartz: #F7CAC9;
+  --color-rose-dark: #d69e9c;
   --color-serenity: #92A8D1;
-  --bg-gradient-light: linear-gradient(135deg, #F7CAC9 0%, #ffffff 40%, #ffffff 60%, #92A8D1 100%);
-  --bg-gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --color-cream: #FFFDF7;
+  --color-off-white: #FAF9F6; /* The requested Off-White */
+  --color-ink: #4a4a4a;
+  --color-deep-slate: #334155; 
 }
 
 @layer base {
   body {
-    background: var(--bg-gradient-light);
+    background-color: var(--color-rose-quartz);
+    color: var(--color-deep-slate);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+
+    /* Grid pattern */
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    
+    background-size: 40px 40px;
     background-attachment: fixed;
-    min-height: 100vh;
-    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: var(--font-inter), sans-serif;
   }
 
   .dark body {
-    background: var(--bg-gradient-dark);
+    background-color: #1a1917;
+    color: var(--color-cream);
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+}
+
+@layer utilities {
+  .text-shadow-retro {
+    /* Shadow helps off-white pop against pink/blue */
+    text-shadow: 2px 2px 0px rgba(146, 168, 209, 0.6); 
+  }
+  
+  .dark .text-shadow-retro {
+    text-shadow: 2px 2px 0px var(--color-serenity);
+  }
+
+  .scalloped-edge {
+    position: relative;
+    background-color: var(--color-serenity);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .scalloped-edge::after {
+    content: "";
+    position: absolute;
+    bottom: -40px; 
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-image: radial-gradient(circle at 50% 0, var(--color-serenity) 70%, transparent 71%);
+    background-size: 60px 80px; 
+    background-repeat: repeat-x;
+    z-index: 10;
+  }
+  
+  /* Strict utility for off-white */
+  .text-off-white {
+    color: var(--color-off-white);
+  }
+  
+  .border-off-white {
+    border-color: var(--color-off-white);
   }
 }
