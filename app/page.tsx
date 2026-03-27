@@ -99,13 +99,13 @@ export default function Portfolio() {
   ];
 
   const projects = [
-    { title: "CrowdCast", desc: "An application for visualizing crowding uncertainties for MRT/LRT commuters in Metro Manila.", tags: ["Data Viz", "Next.js", "Research"], color: "bg-rose-quartz" },
-    { title: "OCR Pipeline", desc: "A computer vision system utilizing OpenCV, Tesseract, and Leptonica for text extraction.", tags: ["C++", "OpenCV", "Vision"], color: "bg-serenity" },
-    { title: "CropSagip", desc: "A study on consumer perceptions of food waste and willingness to buy 'imperfect' produce.", tags: ["Sustainability", "Research", "UI/UX"], color: "bg-rose-quartz" },
-    { title: "Paradise Kicks", desc: "Led product alignment and front-end design for a user-centered interface using Agile/DevOps.", tags: ["Product Owner", "Front-End", "Agile"], color: "bg-serenity" },
-    { title: "Taft10 Website", desc: "A discovery platform helping students find and explore restaurants within the Taft vicinity.", tags: ["Web Dev", "UI/UX", "Community"], color: "bg-rose-quartz" },
-    { title: "Payroll System", desc: "Developed a Ruby-based system to calculate salary and work hours using OOP paradigms.", tags: ["Ruby", "OOP", "Logic"], color: "bg-serenity" },
-    { title: "Vending Machine", desc: "Built a program that simulated the operation of a vending machine factory.", tags: ["Java/C++", "OOP", "Simulation"], color: "bg-rose-quartz" },
+    { title: "CrowdCast", desc: "An application for visualizing crowding uncertainties for MRT/LRT commuters in Metro Manila.", tags: ["Data Viz", "Next.js", "Thesis"], color: "bg-rose-quartz" },
+    { title: "OCR Pipeline", desc: "A computer vision system utilizing OpenCV, Tesseract, and Leptonica for text extraction.", tags: ["C++", "OpenCV"], color: "bg-serenity" },
+    { title: "Salud Panciteria", desc: "A website made to boost the online presence of Salud Panciteria.", tags: ["Agile", "Product Management", "Manual Testing"], color: "bg-rose-quartz" },
+    { title: "Paradise Kicks", desc: "Led product alignment and co-designed the front-end for a user-centered interface using Agile.", tags: ["Product Management", "Front-End", "Agile"], color: "bg-serenity" },
+    { title: "Taft10 Website", desc: "A discovery platform helping students find and explore restaurants within the Taft vicinity.", tags: ["Web Dev", "UI/UX"], color: "bg-rose-quartz" },
+    { title: "Payroll System", desc: "Developed a Ruby-based system to calculate salary and work hours using OOP paradigms.", tags: ["Ruby", "OOP"], color: "bg-serenity" },
+    { title: "Student Adaptability Analysis", desc: "Performed end-to-end EDA on 1,200+ records using Chi-Square testing and custom Association Rule Mining to identify socio-economic drivers of student COVID-19 adaptability.", tags: ["Python", "Data Analysis"], color: "bg-rose-quartz" },
     { title: "Stocks Classifier", desc: "Applied and analyzed machine learning algorithms for a classification task using Google dataset.", tags: ["ML", "Python", "Data Science"], color: "bg-serenity" }
   ];
 
@@ -149,10 +149,10 @@ export default function Portfolio() {
           <header className="max-w-4xl mx-auto text-center relative z-10">
             <span className="inline-block bg-white text-deep-slate px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-widest mb-6 shadow-sm transform -rotate-2 border border-deep-slate/10">Hello!</span>
             <h1 className="font-serif text-5xl md:text-7xl font-black mb-6 text-off-white text-shadow-retro leading-tight">
-              I'm <span className="relative inline-block">Alexis<svg className="absolute -bottom-2 left-0 w-full h-3 text-rose-quartz" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span>.
+              I'm <span className="relative inline-block">Lexy<svg className="absolute -bottom-2 left-0 w-full h-3 text-rose-quartz" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span>.
             </h1>
             <p className="text-base md:text-lg font-medium text-off-white/90 max-w-2xl mx-auto leading-relaxed">
-              I am a <strong className="text-off-white font-black">Computer Science senior</strong> at DLSU and an aspiring Product Manager/Data Analyst/UI/UX Designer.
+              I am a <strong className="text-off-white font-black">Computer Science senior</strong> at De La Salle University and an aspiring Product Manager/Data Analyst/UI/UX Designer.
             </p>
           </header>
         </div>
