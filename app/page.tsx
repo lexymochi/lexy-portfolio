@@ -67,7 +67,7 @@ const HangingLampSwitch = () => {
     <div className="relative flex flex-col items-center justify-start z-50 -mt-2">
       <div className="absolute top-[-100px] w-[2px] bg-white/60 transition-all duration-300" style={{ height: isPulling ? '150px' : '100px' }} />
       <div onClick={handleToggle} className="cursor-pointer group relative transition-all duration-300" style={{ transform: `translateY(${isPulling ? '50px' : '0px'})` }}>
-        <div className="w-10 h-10 rounded-full border-[3px] border-white/80 shadow-md flex items-center justify-center bg-rose-quartz group-hover:scale-110">
+        <div className="w-10 h-10 rounded-full border-[3px] border-white/80 shadow-md flex items-center justify-center bg-rose-quartz dark:bg-rose-quartz-dark group-hover:scale-110">
            {isDark ? (
              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
            ) : (
@@ -99,14 +99,14 @@ export default function Portfolio() {
   ];
 
   const projects = [
-    { title: "CrowdCast", desc: "An application for visualizing crowding uncertainties for MRT/LRT commuters in Metro Manila.", tags: ["Data Viz", "Next.js", "Thesis"], color: "bg-rose-quartz" },
-    { title: "OCR Pipeline", desc: "A computer vision system utilizing OpenCV, Tesseract, and Leptonica for text extraction.", tags: ["C++", "OpenCV"], color: "bg-serenity" },
-    { title: "Salud Panciteria", desc: "A website made to boost the online presence of Salud Panciteria.", tags: ["Agile", "Product Management", "Manual Testing"], color: "bg-rose-quartz" },
-    { title: "Paradise Kicks", desc: "Led product alignment and co-designed the front-end for a user-centered interface using Agile.", tags: ["Product Management", "Front-End", "Agile"], color: "bg-serenity" },
-    { title: "Taft10 Website", desc: "A discovery platform helping students find and explore restaurants within the Taft vicinity.", tags: ["Web Dev", "UI/UX"], color: "bg-rose-quartz" },
-    { title: "Payroll System", desc: "Developed a Ruby-based system to calculate salary and work hours using OOP paradigms.", tags: ["Ruby", "OOP"], color: "bg-serenity" },
-    { title: "Student Adaptability Analysis", desc: "Performed end-to-end EDA on 1,200+ records using Chi-Square testing and custom Association Rule Mining to identify socio-economic drivers of student COVID-19 adaptability.", tags: ["Python", "Data Analysis"], color: "bg-rose-quartz" },
-    { title: "Stocks Classifier", desc: "Applied and analyzed machine learning algorithms for a classification task using Google dataset.", tags: ["ML", "Python", "Data Science"], color: "bg-serenity" }
+    { title: "CrowdCast", desc: "An application for visualizing crowding uncertainties for MRT/LRT commuters in Metro Manila.", tags: ["Data Viz", "Next.js", "Thesis"], color: "bg-rose-quartz dark:bg-rose-quartz-dark" },
+    { title: "OCR Pipeline", desc: "A computer vision system utilizing OpenCV, Tesseract, and Leptonica for text extraction.", tags: ["C++", "OpenCV"], color: "bg-serenity dark:bg-serenity-dark" },
+    { title: "Salud Panciteria", desc: "A website made to boost the online presence of Salud Panciteria.", tags: ["Agile", "Product Management", "Manual Testing"], color: "bg-rose-quartz dark:bg-rose-quartz-dark" },
+    { title: "Paradise Kicks", desc: "Led product alignment and co-designed the front-end for a user-centered interface using Agile.", tags: ["Product Management", "Front-End", "Agile"], color: "bg-serenity dark:bg-serenity-dark" },
+    { title: "Taft10 Website", desc: "A discovery platform helping students find and explore restaurants within the Taft vicinity.", tags: ["Web Dev", "UI/UX"], color: "bg-rose-quartz dark:bg-rose-quartz-dark" },
+    { title: "Payroll System", desc: "Developed a Ruby-based system to calculate salary and work hours using OOP paradigms.", tags: ["Ruby", "OOP"], color: "bg-serenity dark:bg-serenity-dark" },
+    { title: "Student Adaptability Analysis", desc: "Performed end-to-end EDA on 1,200+ records using Chi-Square testing and custom Association Rule Mining to identify socio-economic drivers of student COVID-19 adaptability.", tags: ["Python", "Data Analysis"], color: "bg-rose-quartz dark:bg-rose-quartz-dark" },
+    { title: "Stocks Classifier", desc: "Applied and analyzed machine learning algorithms for a classification task using Google dataset.", tags: ["ML", "Python", "Data Science"], color: "bg-serenity dark:bg-serenity-dark" }
   ];
 
   const maxIndex = Math.max(0, projects.length - 3);
@@ -122,16 +122,16 @@ export default function Portfolio() {
     <div className="min-h-screen font-sans selection:bg-serenity selection:text-white dark:bg-slate-900 overflow-x-hidden">
       
       {/* --- NAVIGATION --- */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-20 py-6 ${scrolled ? "bg-serenity/90 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-20 py-6 ${scrolled ? "bg-serenity/90 dark:bg-serenity-dark/90 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
         <div className="max-w-full flex justify-between items-center mx-auto">
           <div className="relative w-16 h-10 hover:scale-105 transition-transform cursor-pointer">
             <Image src="/logo.svg" alt="Logo" fill className="object-contain drop-shadow-sm" priority />
           </div>
           <div className="flex items-center gap-6">
-            <div className={`hidden md:flex space-x-8 text-xs font-bold px-8 py-4 rounded-full text-off-white ${scrolled ? "bg-transparent" : "bg-white/20 backdrop-blur-md border-2 border-off-white/30"}`}>
-              <a href="#experience" className="hover:text-rose-quartz transition-colors">Experience</a>
-              <a href="#projects" className="hover:text-rose-quartz transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-rose-quartz transition-colors">Contact</a>
+            <div className={`hidden md:flex space-x-8 text-xs font-bold px-8 py-4 rounded-full text-off-white ${scrolled ? "bg-transparent" : "bg-white/20 dark:bg-slate-800/50 backdrop-blur-md border-2 border-off-white/30 dark:border-white/10"}`}>
+              <a href="#experience" className="hover:text-rose-quartz dark:hover:text-rose-quartz-dark transition-colors">Experience</a>
+              <a href="#projects" className="hover:text-rose-quartz dark:hover:text-rose-quartz-dark transition-colors">Projects</a>
+              <a href="#contact" className="hover:text-rose-quartz dark:hover:text-rose-quartz-dark transition-colors">Contact</a>
             </div>
             <HangingLampSwitch />
           </div>
@@ -139,17 +139,16 @@ export default function Portfolio() {
       </nav>
 
       {/* --- HERO --- */}
-      {/* Centered content vertically using flex, items-center, and min-h */}
-      <div className="mx-4 md:mx-8 bg-serenity rounded-b-[60px] relative z-10 shadow-xl min-h-[500px] md:min-h-[600px] flex items-center justify-center pt-24 pb-24">
+      <div className="mx-4 md:mx-8 bg-serenity dark:bg-serenity-dark rounded-b-[60px] relative z-10 shadow-xl min-h-[500px] md:min-h-[600px] flex items-center justify-center pt-24 pb-24">
         <div className="text-off-white px-6 text-center max-w-4xl relative">
-          {/* Decorative Flowers */}
+          {/* Flowers */}
           <FlowerIcon className="absolute -top-12 left-[5%] w-10 h-10 text-off-white/40 animate-spin-slow" />
           <FlowerIcon className="absolute -bottom-12 right-[5%] w-14 h-14 text-off-white/30 rotate-12" />
           
           <header className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="inline-block bg-white text-deep-slate px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-widest mb-6 shadow-sm transform -rotate-2 border border-deep-slate/10">Hello!</span>
+            <span className="inline-block bg-white dark:bg-slate-800 text-deep-slate dark:text-off-white px-4 py-1 rounded-full font-bold text-[10px] uppercase tracking-widest mb-6 shadow-sm transform -rotate-2 border border-deep-slate/10 dark:border-white/10">Hello!</span>
             <h1 className="font-serif text-5xl md:text-7xl font-black mb-6 text-off-white text-shadow-retro leading-tight">
-              I'm <span className="relative inline-block">Lexy<svg className="absolute -bottom-2 left-0 w-full h-3 text-rose-quartz" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span>.
+              I'm <span className="relative inline-block">Lexy<svg className="absolute -bottom-2 left-0 w-full h-3 text-rose-quartz dark:text-rose-quartz-dark" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span>.
             </h1>
             <p className="text-base md:text-lg font-medium text-off-white/90 max-w-2xl mx-auto leading-relaxed">
               I am a <strong className="text-off-white font-black">Computer Science senior</strong> at De La Salle University and an aspiring Product Manager/Data Analyst/UI/UX Designer.
@@ -168,9 +167,9 @@ export default function Portfolio() {
         <div className="flex overflow-x-auto pb-8 gap-8 no-scrollbar md:grid md:grid-cols-3 md:overflow-visible">
           {experiences.map((exp, i) => (
             <div key={i} className="group relative min-w-[320px] md:min-w-0">
-              <div className={`absolute inset-0 rounded-[40px] transform rotate-1 transition-transform group-hover:rotate-3 group-hover:scale-105 ${i % 2 === 0 ? 'bg-serenity/30' : 'bg-rose-quartz/20'}`} />
+              <div className={`absolute inset-0 rounded-[40px] transform rotate-1 transition-transform group-hover:rotate-3 group-hover:scale-105 ${i % 2 === 0 ? 'bg-serenity/30 dark:bg-serenity-dark/30' : 'bg-rose-quartz/20 dark:bg-rose-quartz-dark/20'}`} />
               <div className="relative bg-white dark:bg-slate-800 border-2 border-deep-slate/10 dark:border-white/10 rounded-[40px] p-8 h-full flex flex-col items-center text-center transition-transform hover:-translate-y-2 shadow-lg hover:shadow-xl">
-                <div className={`mb-2 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${i % 2 === 0 ? 'bg-serenity text-white border-serenity' : 'bg-rose-quartz text-white border-rose-quartz'}`}>
+                <div className={`mb-2 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border ${i % 2 === 0 ? 'bg-serenity dark:bg-serenity-dark text-white border-serenity dark:border-serenity-dark' : 'bg-rose-quartz dark:bg-rose-quartz-dark text-white border-rose-quartz dark:border-rose-quartz-dark'}`}>
                   {exp.company}
                 </div>
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-4">{exp.date}</span>
@@ -198,7 +197,7 @@ export default function Portfolio() {
           <button 
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className={`absolute -left-4 md:-left-12 z-40 p-3 rounded-full bg-white dark:bg-slate-800 shadow-2xl border-2 border-serenity text-serenity transition-all hover:scale-110 active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed`}
+            className={`absolute -left-4 md:-left-12 z-40 p-3 rounded-full bg-white dark:bg-slate-800 shadow-2xl border-2 border-serenity dark:border-serenity-dark text-serenity dark:text-serenity-dark transition-all hover:scale-110 active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed`}
           >
             <ArrowIcon direction="left" className="w-4 h-4" />
           </button>
@@ -226,7 +225,7 @@ export default function Portfolio() {
                     </p>
                     <div className="flex flex-wrap gap-2 justify-center mt-auto">
                       {proj.tags.map(tag => (
-                        <span key={tag} className="px-2 py-1 border border-deep-slate/20 rounded-md text-[9px] font-bold uppercase text-slate-500 dark:text-off-white/50 group-hover:bg-rose-quartz group-hover:text-white transition-colors">
+                        <span key={tag} className="px-2 py-1 border border-deep-slate/20 rounded-md text-[9px] font-bold uppercase text-slate-500 dark:text-off-white/50 group-hover:bg-rose-quartz dark:group-hover:bg-rose-quartz-dark group-hover:text-white transition-colors">
                           {tag}
                         </span>
                       ))}
@@ -241,7 +240,7 @@ export default function Portfolio() {
           <button 
             onClick={nextSlide}
             disabled={currentIndex >= maxIndex}
-            className={`absolute -right-4 md:-right-12 z-40 p-3 rounded-full bg-white dark:bg-slate-800 shadow-2xl border-2 border-serenity text-serenity transition-all hover:scale-110 active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed`}
+            className={`absolute -right-4 md:-right-12 z-40 p-3 rounded-full bg-white dark:bg-slate-800 shadow-2xl border-2 border-serenity dark:border-serenity-dark text-serenity dark:text-serenity-dark transition-all hover:scale-110 active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed`}
           >
             <ArrowIcon direction="right" className="w-4 h-4" />
           </button>
@@ -262,7 +261,7 @@ export default function Portfolio() {
           <div className="flex flex-col gap-4 mx-auto md:mx-0">
             <a 
               href="mailto:beaarcega28@gmail.com"
-              className="group flex items-center justify-center md:justify-start gap-4 text-deep-slate dark:text-off-white hover:text-serenity dark:hover:text-rose-quartz transition-colors"
+              className="group flex items-center justify-center md:justify-start gap-4 text-deep-slate dark:text-off-white hover:text-serenity dark:hover:text-rose-quartz-dark transition-colors"
             >
               <MailIcon className="w-6 h-6 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300" />
               <span className="font-bold tracking-wide text-sm">beaarcega28@gmail.com</span>
@@ -272,12 +271,16 @@ export default function Portfolio() {
               href="https://linkedin.com/in/alexisarcega" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="group flex items-center justify-center md:justify-start gap-4 text-deep-slate dark:text-off-white hover:text-serenity dark:hover:text-rose-quartz transition-colors"
+              className="group flex items-center justify-center md:justify-start gap-4 text-deep-slate dark:text-off-white hover:text-serenity dark:hover:text-rose-quartz-dark transition-colors"
             >
               <LinkedInIcon className="w-6 h-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
               <span className="font-bold tracking-wide text-sm">linkedin.com/in/alexisarcega</span>
             </a>
           </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-300/50 dark:border-white/10 text-center md:text-left text-[10px] font-bold uppercase tracking-widest text-slate-500">
+          © {new Date().getFullYear()} Bea Alexis Arcega
         </div>
       </footer>
     </div>
